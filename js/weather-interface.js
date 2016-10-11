@@ -1,7 +1,11 @@
 var Weather = require('./../js/weather.js').weatherModule;
 
 var displayHumidity = function(location, humidityData) {
-  $('.show-weather').text("The humidity in " + location + " is " + humidityData + "%");
+  $('.show-humidity').text("The humidity in " + location + " is " + humidityData + "%");
+};
+
+var displayTemp = function(location, tempDataCelsius, tempDataFahrenheit) {
+  $('.show-temp').text("The temperature in " + location + " is " + tempDataCelsius.toFixed(2) + " Celsius and " + tempDataFahrenheit.toFixed(2) + " Fahrenheit.");
 };
 
 $(document).ready(function() {
@@ -12,6 +16,7 @@ $(document).ready(function() {
     event.preventDefault();
     var location = $('#location').val();
     $("#location").val("");
-      weather.getWeather(location, displayHumidity);
+    weather.getHumidity(location, displayHumidity);
+    weather.getTemp(location, displayTemp);
   });
 });
